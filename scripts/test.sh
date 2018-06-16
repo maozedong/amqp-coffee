@@ -13,7 +13,7 @@ ROOT=`git rev-parse --show-toplevel`
 FILES=$ROOT/test
 # try to find mocha, no matter where it is
 MOCHA=$(dirname $(/usr/bin/env node -e "console.log(require.resolve('mocha'))"))/bin/mocha
-PATTERN="*.test.coffee"
+PATTERN="*.test.js"
 
 USAGE='Usage: '$0' [options] [paths]\n\n'
 USAGE=$USAGE'Options:\n'
@@ -23,8 +23,8 @@ USAGE=$USAGE'	-p	only run the tests whole _files_ match this pattern\n'
 USAGE=$USAGE'	-h	display this help information\n'
 USAGE=$USAGE'	-c	display coverage output instead of pass/fail\n\n'
 USAGE=$USAGE'Example:\n'
-USAGE=$USAGE'# run only the sync.test.coffee test\n'
-USAGE=$USAGE'	'$0' test/unit/sync.test.coffee\n\n'
+USAGE=$USAGE'# run only the sync.test.js test\n'
+USAGE=$USAGE'	'$0' test/unit/sync.test.js\n\n'
 USAGE=$USAGE'# run only the unit tests matching hello \n'
 USAGE=$USAGE'	'$0' -g hello test/unit\n\n'
 
@@ -96,10 +96,10 @@ $ROOT/scripts/compile.sh
 if $COVERAGE; then
   _MOCHA=$(dirname $(/usr/bin/env node -e "console.log(require.resolve('mocha'))"))/bin/_mocha
   ISTANBUL=$(dirname $(/usr/bin/env node -e "console.log(require.resolve('istanbul'))"))/lib/cli.js
-  AMQP_TEST=1 NODE_PATH=$ROOT/bin $ISTANBUL cover $_MOCHA -- --require 'coffeescript/register' --reporter spec --ui bdd --grep "$GREP" $TESTS
+  AMQP_TEST=1 NODE_PATH=$ROOT/bin $ISTANBUL cover $_MOCHA -- --reporter spec --ui bdd --grep "$GREP" $TESTS
   open $ROOT/coverage/lcov-report/index.html
 else
 
-  AMQP_TEST=1 NODE_PATH=$ROOT/bin $MOCHA --require 'coffeescript/register' --reporter spec --ui bdd --timeout 10000 --grep "$GREP" $TESTS
+  AMQP_TEST=1 NODE_PATH=$ROOT/bin $MOCHA --reporter spec --ui bdd --timeout 10000 --grep "$GREP" $TESTS
 
 fi
