@@ -1,0 +1,5 @@
+- ~~replace coffee files with generated js files~~
+- cleanup generated js files
+- add babel+ts for typecheck? http://artsy.github.io/blog/2017/11/27/Babel-7-and-TypeScript/
+- prepare architecture to be modular
+- amqp-rest plugin for RPC in REST-like style

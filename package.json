@@ -1,5 +1,5 @@
 {
-  "name": "@microfleet/amqp-coffee",
+  "name": "amqp-js",
   "description": "AMQP driver for node",
   "keywords": [
     "amqp",
@@ -18,31 +18,43 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/dropbox/amqp-coffee/master/LICENSE.txt"
+      "url": "https://raw.github.com/maozedong/amqp-js/master/LICENSE.txt"
     }
   ],
   "main": "./bin/src/amqp.js",
   "scripts": {
     "test": "./scripts/test.sh",
-    "prepublish": "./scripts/compile.sh"
+    "build": "yarn clean:build && babel src --out-dir dist --extensions '.ts'",
+    "clean:build": "rm -rf dist",
+    "prepublishOnly": "yarn build",
+    "test:watch": "echo todo",
+    "typecheck": "tsc",
+    "precommit": "npm run test"
   },
   "dependencies": {
+    "@types/async": "^2.0.49",
+    "@types/debug": "^0.0.30",
+    "@types/lodash": "^4.14.110",
+    "@types/mocha": "^5.2.3",
+    "@types/node": "^10.3.4",
     "async": "^2.6.1",
     "bson": "^2.0.7",
     "debug": "^3.1.0",
+    "husky": "^0.14.3",
     "lodash": "^4.17.10"
   },
   "devDependencies": {
-    "coffeescript": "^2.3.1",
-    "istanbul": "0.4.5",
     "mocha": "^5.2.0",
     "should": "13.2.1",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.9.2",
     "underscore": "^1.9.1",
     "uuid": "^3.2.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dropbox/amqp-coffee.git"
+    "url": "https://github.com/maozedong/amqp-js.git"
   },
   "engines": {
     "node": ">=8.9.0"
